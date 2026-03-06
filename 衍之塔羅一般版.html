@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>衍之塔羅 - 四心靈牌陣指引</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root { --main-gold: #b89470; --warm-bg: #fdfaf7; --line-green: #06C755; }
+        body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; background-color: var(--warm-bg); color: #554a40; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { max-width: 900px; width: 100%; background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); text-align: center; }
+        
+        h1 { color: var(--main-gold); letter-spacing: 3px; font-size: 1.8rem; margin-bottom: 5px; }
+        .subtitle { font-size: 0.85rem; color: #aaa; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .intro-text { font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; color: #888; }
+        select, .draw-btn { width: 100%; max-width: 320px; padding: 12px 20px; border-radius: 30px; border: 1px solid #eee; font-size: 1rem; margin-bottom: 20px; appearance: none; background-color: #fff; }
+        .draw-btn { background: var(--main-gold); color: white; border: none; cursor: pointer; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 15px rgba(184, 148, 112, 0.3); }
+        .draw-btn:hover { background: #a38260; transform: translateY(-2px); }
+        .draw-btn:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
+
+        /* 牌陣佈局區域 */
+        .spread { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 40px; display: none; }
+        .card-item { flex: 1; min-width: 180px; max-width: 200px; background: #fffaf5; border-radius: 15px; padding: 20px; border: 1px solid #f0e6dc; transition: 0.5s; animation: fadeInUp 0.8s ease backwards; }
+        .card-pos { font-size: 0.85rem; color: var(--main-gold); font-weight: bold; margin-bottom: 12px; background: #fff; display: inline-block; padding: 2px 12px; border-radius: 10px; }
+        .card-img { width: 100%; border-radius: 8px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); margin-bottom: 15px; border: 3px solid white; }
+        .card-name { font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; display: block; color: #444; }
+        .card-desc { font-size: 0.88rem; line-height: 1.6; color: #776a5e; text-align: justify; }
+
+        /* 引導區塊 */
+        .cta-area { display: none; margin-top: 50px; padding: 30px 20px; border-top: 1px solid #f0f0f0; animation: fadeIn 1s 1s backwards; }
+        .cta-text { font-size: 1rem; margin-bottom: 20px; color: #666; font-style: italic; }
+        .line-btn { display: inline-block; background: var(--line-green); color: white; text-decoration: none; padding: 14px 40px; border-radius: 50px; font-weight: bold; font-size: 1.05rem; transition: 0.3s; box-shadow: 0 4px 12px rgba(6, 199, 85, 0.2); }
+        .line-btn:hover { transform: scale(1.05); background: #05b04c; }
+        .teacher-info { font-size: 0.8rem; color: #bbb; margin-top: 15px; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        @media (max-width: 600px) { .card-item { min-width: 140px; padding: 15px; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>衍之塔羅</h1>
+    <div class="subtitle">Personal Tarot Guidance</div>
+
+    <p class="intro-text">閉上雙眼，深呼吸三次。<br>在心中默念你的問題，選好方向後開啟指引。</p>
+    
+    <select id="topic">
+        <option value="愛情">❤️ 關於我的：愛情關係</option>
+        <option value="事業">💼 關於我的：事業發展</option>
+        <option value="財富">💰 關於我的：金錢財富</option>
+        <option value="健康">🌿 關於我的：身心健康</option>
+        <option value="運勢">✨ 關於我的：整體運勢</option>
+    </select>
+    <br>
+    <button id="drawBtn" class="draw-btn" onclick="startDivination()">開啟四張牌深度指引</button>
+
+    <div class="spread" id="spreadArea"></div>
+
+    <div class="cta-area" id="ctaArea">
+        <p class="cta-text">「牌面顯示了靈魂的現狀，但命運的鑰匙始終在你手中。」</p>
+        <p>若需要衍之老師針對此牌陣進行「一對一深度解析」：</p>
+        <a href="https://line.me/ti/p/~yz_tarot" class="line-btn">預約 衍之 1對1 線上占卜</a>
+        <div class="teacher-info">LINE ID: yz_tarot | 衍之老師為您溫暖解惑</div>
+    </div>
+</div>
+
+<script>
+    // 【重要】請在此處替換成您的 Google Apps Script 網頁應用程式網址
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbyyoU_jr34CXNFVA9olNYV7pyU0Z4EbCkhF8ZROczNqA0Of7pKfg7A7EypxQqwAXIVDaA/exec";
+
+    // 22張大阿爾克那完整數據庫
+    const tarotData = [
+        { name: "0 愚者", text: "目前的挑戰是一個新的開始。別害怕未知，帶著赤子之心出發吧，宇宙會守護你的勇氣。" },
+        { name: "I 魔術師", text: "你擁有所需的一切資源，現在是行動的時刻。相信自己的創造力，一切皆有可能。" },
+        { name: "II 女祭司", text: "現在適合靜觀其變。聽聽你內心的直覺，那裡已經有了答案，不需要急著向外求索。" },
+        { name: "III 皇后", text: "生命正處於豐盛的階段。無論你問的是什麼，請溫柔地對待自己，美好的果實即將成熟。" },
+        { name: "IV 皇帝", text: "需要建立秩序與紀律。穩定情緒並拿出你的領導力，現在是掌控局勢的好時機。" },
+        { name: "V 教皇", text: "尋求傳統的建議或心靈的指引。這是一段學習與成長的契機，信任更有經驗的人。" },
+        { name: "VI 戀人", text: "面臨選擇時，請跟隨心底最真實的愛。和諧的關係與溝通將會是你現在最大的力量。" },
+        { name: "VII 戰車", text: "保持意志力與專注，你將能克服目前的混亂。贏得勝利的關鍵在於自律與衝勁。" },
+        { name: "VIII 力量", text: "溫柔的力量大於剛強。用耐心與內在的慈悲去化解僵局，你會發現局面比想像中好控制。" },
+        { name: "IX 隱士", text: "暫時往內心退一步吧。這段安靜的獨處能讓你更看清方向，休息是為了邁向更高的智慧。" },
+        { name: "X 命運之輪", text: "改變即將到來，順應生命的流動。這是一個幸運的轉機，請保持開放的心態迎接新可能。" },
+        { name: "XI 正義", text: "誠實面對現狀，宇宙將給你最公平的回應。做出理性且平衡的決定，結果會如你所願。" },
+        { name: "XII 倒吊人", text: "換個角度思考，當下的停滯並非壞事。這是一場必要的修行，犧牲是為了更高的覺醒。" },
+        { name: "XIII 死神", text: "舊的結束是為了新的重生。別害怕改變，放下不再適合你的事物，天空才會放晴。" },
+        { name: "XIV 節制", text: "平衡你的情緒與生活。在溝通或行動中尋求和諧，緩慢且有節奏的調整最能帶來療癒。" },
+        { name: "XV 惡魔", text: "覺察目前的執著與慾望，你有能力打破目前的鎖鏈。認清幻象，重獲心靈的自由。" },
+        { name: "XVI 高塔", text: "突如其來的衝擊是為了震碎舊有的框架。別擔心，這是一次靈魂的大掃除，重建會更穩固。" },
+        { name: "XVII 星星", text: "希望就在前方，保持樂觀。最困難的時刻已經過去，現在是接受宇宙療癒與指引的時間。" },
+        { name: "XVIII 月亮", text: "不安與迷惘只是暫時的。請穿透恐懼去感受真實的內心，真相在直覺中會慢慢浮現。" },
+        { name: "XIX 太陽", text: "前方是一片光明！你的熱情會化解阻礙，感受純粹的快樂與成功吧，一切都清晰可見。" },
+        { name: "XX 審判", text: "聽見心靈的召喚，這是重獲新生的機會。過去的經驗已轉化為智慧，大膽地邁向新階段。" },
+        { name: "XXI 世界", text: "一個階段的圓滿完成。你已經成長了，並達到新的高度，準備好迎接下一個美好的循環。" }
+    ];
+
+    function startDivination() {
+        const topic = document.getElementById('topic').value;
+        const btn = document.getElementById('drawBtn');
+        const spreadArea = document.getElementById('spreadArea');
+        const ctaArea = document.getElementById('ctaArea');
+
+        btn.disabled = true;
+        btn.innerText = "正在感應靈魂場域...";
+
+        // 隨機選4張
+        const shuffled = [...tarotData].sort(() => 0.5 - Math.random());
+        const selected = shuffled.slice(0, 4);
+        const positions = ["過去狀態", "現在處境", "未來發展", "靈魂建議"];
+        
+        let cardNamesStr = ""; 
+        let cardTextsStr = ""; 
+        
+        spreadArea.innerHTML = ""; 
+
+        selected.forEach((card, index) => {
+            const posName = positions[index];
+            const cardId = tarotData.findIndex(c => c.name === card.name);
+            
+            cardNamesStr += `${posName}: ${card.name} / `;
+            cardTextsStr += `${posName}指引: ${card.text}\n`;
+
+            // 動態生成 HTML 結構
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'card-item';
+            cardDiv.style.animationDelay = (index * 0.2) + "s";
+            cardDiv.innerHTML = `
+                <div class="card-pos">${posName}</div>
+                <img class="card-img" src="https://www.sacred-texts.com/tarot/pkt/img/ar${String(cardId).padStart(2, '0')}.jpg" alt="${card.name}">
+                <span class="card-name">${card.name}</span>
+                <div class="card-desc">${card.text}</div>
+            `;
+            spreadArea.appendChild(cardDiv);
+        });
+
+        // 傳送資料到 GAS 後台
+        fetch(webAppUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify({ 
+                category: topic, 
+                cardName: cardNamesStr,
+                cardText: cardTextsStr 
+            })
+        });
+
+        // 動態顯示
+        setTimeout(() => {
+            spreadArea.style.display = 'flex';
+            ctaArea.style.display = 'block';
+            btn.innerText = "占卜已完成";
+            window.scrollTo({ top: spreadArea.offsetTop - 50, behavior: 'smooth' });
+        }, 1800);
+    }
+</script>
+
+</body>
+</html>
