@@ -2,179 +2,323 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>衍之塔羅 - 四心靈牌陣指引</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>衍之塔羅 - 萬語靈感流轉版</title>
     <style>
-        :root { --main-gold: #b89470; --warm-bg: #fdfaf7; --line-green: #06C755; }
-        body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; background-color: var(--warm-bg); color: #554a40; margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .container { max-width: 900px; width: 100%; background: #fff; padding: 40px 20px; border-radius: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); text-align: center; }
-        
-        h1 { color: var(--main-gold); letter-spacing: 3px; font-size: 1.8rem; margin-bottom: 5px; }
-        .subtitle { font-size: 0.85rem; color: #aaa; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
-        
-        /* 新增：選單模式樣式 */
-        .topic-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin: 20px auto 30px; max-width: 600px; }
-        .topic-item { 
-            background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 15px 10px; cursor: pointer;
-            transition: all 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        :root {
+            --bg-color: #f8f6f2;
+            --container-bg: #ffffff;
+            --main-text: #5c554d;
+            --sub-text: #a8a095;
+            --gold-accent: #c4a484;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --btn-hover: #f1ede4;
         }
-        .topic-item:hover { background: #fffaf5; border-color: var(--main-gold); transform: translateY(-3px); }
-        .topic-item.active { border: 2px solid var(--main-gold); background: #fffaf5; box-shadow: 0 4px 12px rgba(184, 148, 112, 0.15); }
-        .topic-icon { font-size: 1.5rem; margin-bottom: 8px; }
-        .topic-label { font-size: 0.9rem; font-weight: bold; color: #666; }
-        .topic-item.active .topic-label { color: var(--main-gold); }
 
-        .draw-btn { width: 100%; max-width: 320px; padding: 15px; border-radius: 30px; border: none; font-size: 1.1rem; margin-top: 10px; cursor: pointer; font-weight: bold; background: var(--main-gold); color: white; transition: 0.3s; box-shadow: 0 4px 15px rgba(184, 148, 112, 0.3); }
-        .draw-btn:hover { background: #a38260; transform: translateY(-2px); }
-        .draw-btn:disabled { background: #ccc; box-shadow: none; }
+        body { 
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; 
+            background-color: var(--bg-color); color: var(--main-text); 
+            margin: 0; padding: 20px 10px; display: flex; justify-content: center;
+        }
 
-        /* 牌陣與結果樣式維持不變 */
-        .spread { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 40px; display: none; }
-        .card-item { flex: 1; min-width: 180px; max-width: 200px; background: #fffaf5; border-radius: 15px; padding: 20px; border: 1px solid #f0e6dc; animation: fadeInUp 0.8s ease backwards; }
-        .card-pos { font-size: 0.85rem; color: var(--main-gold); font-weight: bold; margin-bottom: 12px; background: #fff; display: inline-block; padding: 2px 12px; border-radius: 10px; }
-        .card-img { width: 100%; border-radius: 8px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); margin-bottom: 15px; border: 3px solid white; }
-        .card-name { font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; display: block; color: #444; }
-        .card-desc { font-size: 0.88rem; line-height: 1.6; color: #776a5e; text-align: justify; }
+        .container { 
+            max-width: 1050px; width: 100%; background: var(--container-bg); 
+            padding: 40px 25px; border-radius: 40px; box-shadow: var(--card-shadow); text-align: center; 
+        }
 
-        .cta-area { display: none; margin-top: 50px; padding: 30px 20px; border-top: 1px solid #f0f0f0; }
-        .line-btn { display: inline-block; background: var(--line-green); color: white; text-decoration: none; padding: 14px 40px; border-radius: 50px; font-weight: bold; font-size: 1.05rem; box-shadow: 0 4px 12px rgba(6, 199, 85, 0.2); }
+        h1 { font-size: 2.2em; color: var(--gold-accent); letter-spacing: 8px; margin-bottom: 5px; }
+        .subtitle { font-size: 0.75em; letter-spacing: 3px; color: var(--sub-text); margin-bottom: 30px; text-transform: uppercase; }
 
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .menu-grid { 
+            display: grid; grid-template-columns: repeat(3, 1fr); 
+            gap: 15px; margin-bottom: 20px; max-width: 650px; margin: 0 auto 30px auto;
+        }
+
+        .theme-btn { 
+            background: #fff; border: 1px solid #eee; color: var(--main-text);
+            padding: 15px 5px; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; border-radius: 15px;
+            cursor: pointer; transition: 0.3s;
+        }
+        .theme-btn .icon { font-size: 1.5em; margin-bottom: 8px; }
+        .theme-btn .label { font-size: 0.9em; letter-spacing: 1px; }
+        .theme-btn.active { border: 2.5px solid var(--gold-accent); background: #fdfaf5; box-shadow: 0 5px 15px rgba(196,164,132,0.2); }
+
+        #btnContainer { min-height: 80px; margin: 20px 0; display: flex; justify-content: center; align-items: center; }
+        
+        #drawBtn { 
+            background: var(--gold-accent); color: #fff; border: none;
+            padding: 18px 70px; font-size: 1.2em; border-radius: 50px;
+            cursor: pointer; display: none; 
+            box-shadow: 0 5px 20px rgba(196,164,132,0.3); transition: 0.3s;
+            animation: pulse 1.5s infinite; letter-spacing: 2px;
+        }
+        #drawBtn:hover { transform: scale(1.05); filter: brightness(1.1); }
+
+        #statusArea { 
+            font-size: 1.1em; color: var(--gold-accent); font-weight: bold; 
+            margin-bottom: 20px; padding: 15px; border-radius: 15px; background: #fdfaf5;
+            display: none; letter-spacing: 1px; border: 1px solid #f1ede4;
+        }
+
+        .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 25px; margin-top: 30px; }
+        
+        .card-card { 
+            background: #fff; padding: 25px; border-radius: 30px; border: 1px solid #f1ede4; 
+            animation: fadeIn 0.8s ease forwards; box-shadow: var(--card-shadow); text-align: left;
+        }
+
+        .card-back { 
+            cursor: pointer; background: #fdfaf5; border: 2px dashed #e5e0d8;
+            display: flex; align-items: center; justify-content: center; flex-direction: column; min-height: 420px;
+        }
+
+        .img-box { width: 100%; aspect-ratio: 220 / 380; background: #fdfaf5; border-radius: 15px; overflow: hidden; margin-bottom: 20px; }
+        .card-img { width: 100%; height: 100%; object-fit: cover; }
+        .tag { color: var(--gold-accent); font-size: 0.85em; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 8px; display: block; letter-spacing: 2px; }
+        .card-name { font-size: 1.35em; margin: 15px 0 10px 0; font-weight: 600; color: #4a443e; }
+        .card-desc { font-size: 1em; line-height: 1.85; color: #6d665e; text-align: justify; margin-bottom: 20px; }
+        .wisdom-tip { font-size: 0.9em; color: var(--gold-accent); font-weight: 500; border-top: 1px dashed #eee; padding-top: 15px; }
+
+        /* LINE 聯絡區塊 */
+        .line-contact-box {
+            margin-top: 50px;
+            padding: 30px;
+            background: #fdfaf5;
+            border-radius: 20px;
+            border: 1px solid var(--gold-accent);
+            display: none; /* 抽牌後才顯示 */
+            animation: fadeIn 1.5s ease forwards;
+        }
+        .line-contact-box h3 { color: #4a443e; margin-top: 0; letter-spacing: 2px; }
+        .line-contact-box p { color: #6d665e; line-height: 1.8; margin-bottom: 25px; }
+        .line-btn {
+            background: #06C755; 
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(6, 199, 85, 0.3);
+        }
+        .line-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(6, 199, 85, 0.4); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(196,164,132, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(196,164,132, 0); } 100% { box-shadow: 0 0 0 0 rgba(196,164,132, 0); } }
+        
+        .disabled { opacity: 0.3; pointer-events: none; filter: grayscale(1); }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>衍之塔羅</h1>
-    <div class="subtitle">Personal Tarot Guidance</div>
+    <div class="subtitle">Intuitive Soul Guidance</div>
 
-    <p style="color:#888;">請選擇一個你想指引的方向：</p>
-
-    <p class="intro-text">閉上雙眼，深呼吸三次。<br>在心中默念你的問題，選好方向後開啟指引。</p>
-    
-    <div class="topic-menu" id="topicMenu">
-        <div class="topic-item active" onclick="selectTopic(this, '愛情')">
-            <span class="topic-icon">❤️</span>
-            <span class="topic-label">愛情關係</span>
-        </div>
-        <div class="topic-item" onclick="selectTopic(this, '事業')">
-            <span class="topic-icon">💼</span>
-            <span class="topic-label">事業發展</span>
-        </div>
-        <div class="topic-item" onclick="selectTopic(this, '財富')">
-            <span class="topic-icon">💰</span>
-            <span class="topic-label">金錢財富</span>
-        </div>
-        <div class="topic-item" onclick="selectTopic(this, '健康')">
-            <span class="topic-icon">🌿</span>
-            <span class="topic-label">身心健康</span>
-        </div>
-        <div class="topic-item" onclick="selectTopic(this, '運勢')">
-            <span class="topic-icon">✨</span>
-            <span class="topic-label">整體運勢</span>
-        </div>
+    <div class="menu-grid">
+        <div class="theme-btn" onclick="prepare('愛情', this)"><span class="icon">❤️</span><span class="label">情感關係</span></div>
+        <div class="theme-btn" onclick="prepare('事業', this)"><span class="icon">💼</span><span class="label">事業發展</span></div>
+        <div class="theme-btn" onclick="prepare('學業', this)"><span class="icon">🎓</span><span class="label">學業智慧</span></div>
+        <div class="theme-btn" onclick="prepare('財富', this)"><span class="icon">💰</span><span class="label">金錢豐盛</span></div>
+        <div class="theme-btn" onclick="prepare('健康', this)"><span class="icon">🌿</span><span class="label">身心健康</span></div>
+        <div id="defaultBtn" class="theme-btn" onclick="prepare('每日', this)" style="background: #fffaf0;"><span class="icon">✨</span><span class="label">每日指引</span></div>
     </div>
 
-    <button id="drawBtn" class="draw-btn" onclick="startDivination()">開啟四張牌深度指引</button>
+    <div id="statusArea"></div>
 
-    <div class="spread" id="spreadArea"></div>
+    <div id="btnContainer">
+        <button id="drawBtn" onclick="renderStandardResults()">開啟流動指引</button>
+    </div>
 
-    <div class="cta-area" id="ctaArea">
-        <p>「牌面顯示了靈魂的現狀，但命運的鑰匙始終在你手中。如需再次占卜請重新整理頁面」</p>
-        <p>若需要衍之老師針對此牌陣進行深度解析：</p>
-        <a href="https://line.me/ti/p/~yz_tarot" class="line-btn">預約 衍之 1對1 線上占卜</a>
-        <p style="font-size: 0.8rem; color: #bbb; margin-top:15px;">LINE ID: yz_tarot</p>
+    <div id="displayArea" class="result-grid"></div>
+
+    <div id="lineContactArea" class="line-contact-box">
+        <h3>✨ 需要更深層的靈魂對話嗎？</h3>
+        <p>網頁的指引只是第一步的覺察。若你想針對目前的困境，進行更精準、深入的牌陣解析與客製化建議，歡迎預約專屬的 1 對 1 解牌服務。</p>
+        <a href="https://line.me/ti/p/~yz_tarto" target="_blank" class="line-btn">
+            💬 加 LINE 預約解牌
+        </a>
     </div>
 </div>
 
 <script>
-    // 【重要】請替換您的 GAS 網址
-    const webAppUrl = "https://script.google.com/macros/s/AKfycbyyoU_jr34CXNFVA9olNYV7pyU0Z4EbCkhF8ZROczNqA0Of7pKfg7A7EypxQqwAXIVDaA/exec";
-    let currentTopic = "愛情"; // 預設值
+const PRIMARY_IMG = "https://www.sacred-texts.com/tarot/pkt/img/"; 
 
-    function selectTopic(element, value) {
-        // 移除所有選取狀態
-        document.querySelectorAll('.topic-item').forEach(item => item.classList.remove('active'));
-        // 增加點選者的選取狀態
-        element.classList.add('active');
-        currentTopic = value;
+// ==========================================
+// 已經綁定你最新的專屬 GAS 網址
+// ==========================================
+const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbz4wvEtA8tLoLHyCWjGSCuvJXWKu8eIqj_LHT13OpMUjvXrfTUHZbdZWumTQgnoSQAi/exec"; 
+
+const universalContext = {
+    openings: ["從能量場的流動來看，", "此刻宇宙的頻率暗示著：", "牌面清晰地浮現出一個訊息：", "高我正輕聲對你訴說：", "當下的星象與能量交織透露："],
+    connectors: ["這意味著", "這正反映出你內心深處的渴望，", "請特別留意", "這其實預示了一種轉化，", "這將引導你走向"],
+    closings: ["慢下來，讓答案自己在心中浮現。", "轉化的契機，往往就藏在這微小的覺察中。", "請絕對信任你當下的直覺，它從不說謊。", "一切都在最好的安排之中，放寬心順流而行。", "無須急躁，時間會為你帶來最完美的答案。"]
+};
+
+// 22 張牌庫 (完整語意庫)
+const tarotData = [
+    { id: "ar00", name: "0 愚者", vibe: ["像孩子般純粹的視角", "勇敢踏入未知的勇氣", "毫無包袱的輕盈感", "不按牌理出牌的幽默"], wisdom: { "愛情": ["一段不期而遇的浪漫正悄悄萌芽", "是時候放下對這段關係的既定框架與標籤了", "雙方都需要給彼此更多自由呼吸的空間", "這是一場充滿驚喜的情感冒險"], "事業": ["大膽嘗試你從未涉足的新領域", "跳脫現有體制的僵化思維", "即使準備不夠周全，也該大膽出發了", "出乎意料的職場新機會即將降臨"], "學業": ["跨學科的學習會為你帶來靈感", "過度緊繃反而阻礙思考，放鬆心情學得更快", "保持好奇心，別被傳統解題框架困住"], "財富": ["可能會有一筆意外的小驚喜", "理財需要更靈活、不按常理出牌的思維", "別因為過度恐懼風險而錯失良機"], "健康": ["多去戶外走走，感受微風與自然", "注意神經大條導致的小擦傷或跌倒", "保持心情的愉悅就是最好的免疫力"], "每日": ["今日適合打破慣性，去嘗試一件從未做過的小事", "別太在意他人的眼光，做最真實的自己", "對未知保持開放的心胸，驚喜就在轉角"] } },
+    { id: "ar01", name: "I 魔術師", vibe: ["點石成金的創造力", "掌握全局的自信", "資源靈活調度的手腕", "清晰明確的表達"], wisdom: { "愛情": ["展現你的獨特才華將深深吸引對方", "溝通與言語是化解目前僵局的靈丹妙藥", "主動創造浪漫的時刻，發球權在你手上"], "事業": ["你已具備完成目標所需的所有工具", "這正是開啟新計畫或創業的最佳時機", "發揮你的專業影響力，讓別人看見價值"], "學業": ["融會貫通是現在的學習主軸", "考試手感極佳，能靈活運用所學知識", "適合發表演說或參與辯論性質的課題"], "財富": ["運用你的專業技術或斜槓技能來獲利", "多管道的收入來源正在向你招手", "是時候把腦中的理財藍圖付諸實行了"], "健康": ["精力充沛，身體狀態處於巔峰", "非常適合開始一項新的運動或健身計畫", "注意手部關節或是呼吸道的保養"], "每日": ["你擁有所需的一切資源，今天是展現創造力的好日子", "把話說清楚，清晰的溝通能為你省下麻煩"] } },
+    { id: "ar02", name: "II 女祭司", vibe: ["靜觀其變的智慧", "向內傾聽的直覺", "與世無爭的淡然", "深不可測的神祕感"], wisdom: { "愛情": ["精神上的契合遠比物質條件重要", "保持一點神祕感反而能增加吸引力", "在安靜的陪伴中，去感受對方最真實的心意", "目前不適合急躁推進，靜靜等待時機"], "事業": ["現在不宜有太大的動作，適合幕後策劃", "多觀察職場中的細節與未說出口的潛規則", "信任你的第一直覺，它比數據更準確"], "學業": ["靜下心來鑽研，能突破難懂的學術瓶頸", "適合圖書館或安靜的環境，遠離喧囂", "這是一個適合深造或研究專門知識的時期"], "財富": ["財務狀況趨於保守，沈著應對是上策", "目前不是盲目跟風投資的好時機", "隱藏的開支或未公開的財務訊息需要留意"], "健康": ["注意睡眠品質與潛意識的夢境暗示", "內分泌系統與水分代謝的平衡很重要", "靜坐冥想能有效舒緩你的身心壓力"], "每日": ["安靜下來，那個被你忽略的真相會自己浮出水面", "少說話多觀察，今日的智慧來自於傾聽"] } },
+    { id: "ar03", name: "III 皇后", vibe: ["豐盛滋養的溫柔", "感官極致的享受", "充滿包容的母性能量", "對美學的敏銳度"], wisdom: { "愛情": ["你正被溫柔與滿滿的愛意所包圍", "這段關係正處於繁茂且滋養的成長期", "適合與伴侶共同經營生活美學", "展現你的包容力，能融化對方的防備"], "事業": ["辛苦耕耘的專案即將迎來豐碩的果實", "良好的人際關係與貴人是你的最強助力", "在工作中融入美感或創意會帶來巨大成功"], "學業": ["在舒適優雅的環境中學習效率最高", "藝術、設計或文學相關的感悟力大幅提升", "在充滿鼓勵的氛圍中，潛能會被激發"], "財富": ["財運亨通，生活質量有望大幅提升", "適合投資與美學、餐飲相關的產業", "這是一個該好好花錢犒賞自己的美好時刻"], "健康": ["感受大地能量的療癒，多親近自然", "注意皮膚保養以及女性機能的健康", "小心因為過度享受美食而帶來的負擔"], "每日": ["今日請好好感受生命中的豐盛，對自己溫柔一點", "買束花或吃頓好的，滋養自己的身心絕非奢侈"] } },
+    { id: "ar04", name: "IV 皇帝", vibe: ["穩如泰山的安定感", "建立秩序的魄力", "勇於承擔的責任心", "自律帶來的自由"], wisdom: { "愛情": ["這是一段走向長期且穩定的堅實承諾", "關係中需要有人展現更多的責任感", "給予對方實質的安全感，勝過千言萬語"], "事業": ["展現你的領導力，勇敢掌控大局", "建立一套規律且有效率的系統會帶來大成果", "你的專業與穩重將獲得長官的肯定"], "學業": ["嚴謹的讀書計畫能確保你順利達標", "不要找藉口，高度自律是通往高分的唯一路徑", "這門學科的基礎架構需要被重新鞏固"], "財富": ["嚴格執行你的理財規範與預算控制", "建立穩定的長期資產體系，拒絕投機", "有實力的長輩或專家會給你極具價值的建議"], "健康": ["注意心血管健康與骨骼關節的保養", "規律的作息是你目前最需要的特效藥", "小心因為過度承擔壓力而導致的身體僵硬"], "每日": ["自律即自由，建立穩定的生活節奏會讓你無比踏實", "今日適合處理需要邏輯與條理的繁雜事務"] } },
+    { id: "ar05", name: "V 教皇", vibe: ["遵循傳統的指引", "尋求共識的智慧", "心靈導師的開導", "道德與規範的依歸"], wisdom: { "愛情": ["感情走向傳統且穩定的相處模式", "雙方的價值觀與信仰契合度非常重要", "尋求長輩的認可或專家的婚姻諮詢會有幫助"], "事業": ["遵循公司既定的流程與體制行事", "向有經驗的導師或專業顧問尋求建議", "團隊內的共識與企業文化是成功的關鍵"], "學業": ["體制內的考試或升學對你較為有利", "遇到瓶頸時，主動向師長請教能豁然開朗", "傳統的學習方法雖然枯燥，但目前最有效"], "財富": ["採取穩健保守的理財計畫", "適合諮詢專業的財務顧問或理財專員", "正財運穩定，遵循正規管道獲利"], "健康": ["尋求正統醫療體系的幫助，而非偏方", "注意頸部、喉嚨與扁桃腺的保養", "規律的信仰活動或靜心能帶來強大的療癒力"], "每日": ["向經驗豐富的前輩請教，傳統智慧能幫你少走彎路", "今日適合參加課程、聽演講或閱讀經典"] } },
+    { id: "ar06", name: "VI 戀人", vibe: ["靈魂深處的契合", "面臨關鍵的選擇", "內外和諧的狀態", "跟隨熱忱的驅動力"], wisdom: { "愛情": ["這可能是遇見靈魂伴侶的絕佳契機", "你們的互動充滿了甜蜜與深刻的理解", "感情走到了一個需要做出重要承諾的十字路口"], "事業": ["將會有一場愉快且互信互助的成功合作", "職場的人際關係滿分，團隊默契極佳", "在兩個機會中，請選擇那個讓你充滿熱忱的"], "學業": ["找到志同道合的讀書夥伴能事半功倍", "在選科或選校時，請聽從你內心真正的興趣", "這門科目讓你感到快樂，學習吸收力極強"], "財富": ["這是一個與人合資或合夥的良好時機", "消費時需要平衡「需要」與「想要」的心理", "良好的人際魅力將為你帶來意想不到的財運"], "健康": ["心情的愉悅會直接帶動身體的康復", "注意呼吸系統與肺部的健康保養", "你需要平衡內心的矛盾，減少心理內耗"], "每日": ["今日關於「契合度」，不論是選人或選事，請跟隨你的心", "去做那件能讓你的靈魂感到共鳴的事"] } },
+    { id: "ar07", name: "VII 戰車", vibe: ["勇往直前的意志力", "掌控韁繩的專注", "無堅不摧的決心", "在動態中保持平衡"], wisdom: { "愛情": ["主動出擊將為你贏得美好回報", "需要共同克服感情中的現實障礙", "關係正處於快速升溫的階段", "勇敢表達心意，不要猶豫"], "事業": ["在激烈的競爭中強勢脫穎而出", "出差或外勤業務將為你帶來豐碩成果", "憑藉強大的意志力戰勝職場阻礙", "設定明確目標並全速前進"], "學業": ["考前衝刺期，爆發力極強", "有機會一舉克服一直卡關的弱勢科目", "保持高度專注，心無旁騖"], "財富": ["財務上的障礙即將被強勢突破", "投資決策需要果斷，切忌優柔寡斷", "靠著積極的行動力帶來實質收益"], "健康": ["注意交通安全與外出時的意外", "留意腸胃消化系統的保養與飲食規律", "保持規律運動以發洩過剩的精力"], "每日": ["保持專注，今日的障礙只是為了證明你的決心", "掌握自己的方向盤，別讓他人干涉", "用行動力去粉碎一切自我懷疑"] } },
+    { id: "ar08", name: "VIII 力量", vibe: ["以柔克剛的內在力量", "溫和而堅定的勇氣", "馴服野獸的耐心", "無條件的包容"], wisdom: { "愛情": ["用耐心與溫柔去贏得對方的心", "學會包容對方的小脾氣與不完美", "溫和的溝通永遠比激烈的爭吵有效", "用愛去化解關係中的防備"], "事業": ["優雅地化解職場上的人際危機", "充滿自信且從容地迎接高難度挑戰", "你的內在領導力正在逐漸覺醒", "用柔軟的身段處理剛硬的難題"], "學業": ["慢慢克服讀書時的枯燥與壓力", "保持持久的專注力與水滴石穿的耐性", "對自己多一點溫柔，不要過度逼迫"], "財富": ["成功掌控衝動消費的欲望", "財務控制力顯著提升，能守住財富", "細水長流的理財方式最適合現在的你"], "健康": ["免疫系統逐漸增強，自癒力提升", "注意心臟與血壓的穩定調節", "心理的強健會直接帶動生理的健康"], "每日": ["真正的強大來自溫柔，用慈悲心去面對棘手的問題", "深呼吸，用愛去安撫內心的野獸", "溫和的堅定比強硬的態度更有力量"] } },
+    { id: "ar09", name: "IX 隱士", vibe: ["向內探索的沈澱", "孤獨但充實的智慧", "遠離喧囂的平靜", "點亮心燈的指引"], wisdom: { "愛情": ["現在更需要獨處來思考自己真正的需求", "感情進度放緩，適合低調處理或暫時冷卻", "向內尋找愛，而不是一味向外索求", "尋求靈魂深處的對話，而非表面的熱鬧"], "事業": ["深入鑽研你的專業領域，成為隱形專家", "非常適合獨立作業或研究性質的專案", "重新尋找這份工作對你生命的真正意義", "不求掌聲，默默耕耘將帶來深遠影響"], "學業": ["進入沈浸式的深度學習狀態", "適合專注於冷門、艱澀或專門的課題", "遠離社交媒體，閉關讀書效果最佳"], "財富": ["對物質的慾望與需求逐漸降低", "重新檢視過往的開銷習慣，保守守財為上", "智慧型的投資勝過盲目跟風"], "健康": ["注意眼睛疲勞與睡眠品質的維護", "慢活、吃素或靜心冥想能帶來極大療癒", "需要一段遠離人群的休養時光"], "每日": ["適時撥出一段空白時間，在沈默中找回真實的自我", "向內看，答案一直都在你的心裡", "享受獨處，那是靈魂充電的最好時刻"] } },
+    { id: "ar10", name: "X 命運之輪", vibe: ["順應宇宙的推動", "好運流轉的契機", "無法抗拒的因果", "隨遇而安的豁達"], wisdom: { "愛情": ["一場宿命般的不期而遇即將發生", "關係將出現不可預期的重大轉機", "隨緣而行會讓你在此刻感到更快樂", "緣分的齒輪正在轉動，順其自然"], "事業": ["職場環境即將出現無法控制的大變動", "請務必把握突如其來的絕佳機會", "過往的努力正在產生神奇的連鎖回饋", "順應行業的趨勢，不要逆流而上"], "學業": ["考試運氣提升，容易遇到得心應手的題目", "在變動中突然找到全新的學習興趣", "把握靈光一閃的時刻，那將是突破口"], "財富": ["財運由黑翻紅，迎來難得的時機點", "投資環境出現有利的變動消息", "可能會有一筆意外的財務收穫或機會"], "健康": ["身體循環系統的流暢度正在改善", "注意換季時的適應或是體重的波動", "新陳代謝的改變需要你調整飲食"], "每日": ["好運的齒輪正在轉動，順應生命之流而非與其對抗", "接受一切的發生，它們都是最好的安排", "在變化中保持中心的穩定"] } },
+    { id: "ar11", name: "XI 正義", vibe: ["絕對的公平客觀", "因果平衡的法則", "理智清晰的裁斷", "誠實面對真相"], wisdom: { "愛情": ["關係趨於平等且互相尊重的穩定狀態", "需要冷靜、理智且不帶情緒地處理雙方紛爭", "誠實面對自己與對方內心的真實感受", "這是一段講求付出與回報對等的關係"], "事業": ["合約、法規或制度將還你一個公道", "請做出最客觀不偏頗、不帶私情的判斷", "你的付出與最終的收穫將完全成正比", "重視職場倫理與程序正義"], "學業": ["邏輯、法律或理科的表現會特別優異", "需要極度平衡且規律的各科目讀書時間", "一分耕耘一分收穫，沒有捷徑"], "財富": ["債務、合約與財務將迎來最終的結算", "收支將達成精準的平衡，不多也不少", "小心處理與法律、稅務相關的財務問題"], "健康": ["特別注意腎臟、泌尿系統與腰部的健康", "生活作息與飲食需要達到極致的平衡", "身心失衡是目前所有小毛病的根源"], "每日": ["誠實面對現況，一個公平的決策會帶來長遠的回饋", "保持中立，不要輕易捲入他人的渾水", "種下什麼因，就會收穫什麼果"] } },
+    { id: "ar12", name: "XII 吊人", vibe: ["換位思考的頓悟", "心甘情願的等待", "暫停與臣服", "打破慣性視角"], wisdom: { "愛情": ["為了這段愛做出心甘情願的退讓與妥協", "試著完全從對方的視角來看待目前的爭執", "目前極不宜強求關係進度，請耐心等待", "這是一種靈魂深處的無條件付出"], "事業": ["以退為進才是目前最高級的職場智慧", "這是一段磨練耐心與心智的過渡期", "計畫雖然停滯，但背後卻極具醞釀的意義", "換個方式做，或許會有意想不到的突破"], "學業": ["突破舊有思考瓶頸的絕佳時刻", "暫緩焦慮，接受目前看似停滯的學習進度", "從完全不同的角度去理解一道難題"], "財富": ["財務處於停滯觀望期，不宜有大動作", "絕對不宜在此刻做大筆的衝動支出", "重新檢視「價值」與「金錢」對你的真實意義"], "健康": ["注意血液循環系統與腿部、腳踝的保養", "非常適合做瑜珈、深層拉伸或倒立", "放下過度的控制欲，身體會自然放鬆"], "每日": ["試著把世界倒過來看，你會發現全新的解決方案", "今天的無所作為，正是為了明天的飛躍做準備", "學會臣服於現狀，平靜自然會降臨"] } },
+    { id: "ar13", name: "XIII 死神", vibe: ["徹底的斷捨離", "舊有模式的終結", "破繭而出的重生", "不可逆的轉化"], wisdom: { "愛情": ["勇敢結束不再適合你的相處模式或關係", "感情面臨質的轉變，將被徹底重塑", "空出心靈的空間，才能迎接真正對的愛", "這是一次痛苦但絕對必要的感情蛻變"], "事業": ["一個舊計畫或職務的徹底終結", "準備好迎接職業生涯的重大轉型與洗牌", "捨棄那些無用、消耗你的工作執著", "關上一扇門，宇宙會為你打開另一扇窗"], "學業": ["徹底捨棄無效、僵化的舊有讀書方法", "即將跨入一個完全陌生的新知識領域", "經歷一次成績的震撼後，重新找回步調"], "財富": ["財務結構面臨全面的重組與汰換", "停損是此刻最痛苦但也最必要的決策", "斷捨離舊的消費觀念與囤積習慣"], "健康": ["注意身體深層的排毒與新陳代謝", "這是徹底告別破壞健康壞習慣的最佳時機", "經歷一場疾病後，迎來體質的重生"], "每日": ["放下那些不再適合你的，才能空出手來擁抱更好的未來", "結束不是終點，而是另一個偉大故事的開端", "勇敢地向過去告別，不帶一絲遺憾"] } },
+    { id: "ar14", name: "XIV 節制", vibe: ["完美和諧的流動", "身心靈的整合", "不偏不倚的中庸", "奇妙的煉金術"], wisdom: { "愛情": ["雙方的溝通如清泉一般順暢且滋養", "這是一段溫和、穩定且能長久經營的關係", "在不斷的交流與磨合中達成美妙的共識", "靈魂與肉體在這段關係中達到了平衡"], "事業": ["極度成功的跨部門資源調度與整合", "團隊合作達到了水乳交融的完美和諧", "成功平衡了繁重的工作壓力與生活品質", "將兩種不同的技能結合，創造出新價值"], "學業": ["展現出強大的跨領域整合與融會貫通能力", "在休閒放鬆與刻苦學習之間取得了完美平衡", "情緒的穩定讓你的學習效率大幅提升"], "財富": ["懂得適度消費，收支達到完美的動態平衡", "財務管理得心應手，資產穩健且緩慢地增長", "多樣化的資產配置為你帶來安全感"], "健康": ["身體各項機能的完美調和與淨化", "多補充水分並保持適度、和緩的運動", "心靈療癒的效果極佳，能量正在自我修復"], "每日": ["平衡是今日的主旋律，適度的微調會讓事情進展得更美", "將兩種看似對立的事物融合，你會得到驚喜", "保持內在的寧靜，不要走向任何極端"] } },
+    { id: "ar15", name: "XV 惡魔", vibe: ["無法抗拒的誘惑", "看清物質的束縛", "直面內心的陰暗", "覺醒與掙脫"], wisdom: { "愛情": ["充滿強烈的肉體與致命的吸引力", "必須警惕關係中過度的控制、嫉妒與佔有慾", "看清這段關係裡不健康的依賴與執著", "小心深陷於不見光的地下情或有毒關係"], "事業": ["被名利、業績困住的龐大精神壓力", "警惕職場上的權力鬥爭與過度擴張的野心", "發現潛伏在檯面下的陰暗面與利益交換", "為了五斗米折腰，感到深深的不自由"], "學業": ["過度依賴手機、網路或娛樂導致嚴重分心", "讀書心不在焉，被外界誘惑牽著鼻子走", "對分數有著病態的執著，反而失去學習的樂趣"], "財富": ["面臨短期投機與高風險獲利的致命誘惑", "物欲過剩、過度消費帶來的財務警訊", "必須高度警惕隱藏的財務陷阱與詐騙"], "健康": ["成癮行為（熬夜、酒精、飲食）的嚴重警示", "注意消化系統、肝臟與泌尿道的問題", "過度的慾望正在透支你的生命能量"], "每日": ["警惕內心過度的執著與誘惑，找回你失落已久的心靈自由", "看清困住你的鎖鏈，其實鑰匙一直都在你手上", "承認自己的陰暗面，那是療癒的第一步"] } },
+    { id: "ar16", name: "XVI 高塔", vibe: ["震撼人心的洗禮", "瓦解虛假的表象", "突如其來的閃電", "破壞後的真實"], wisdom: { "愛情": ["突發的激烈衝突與不可調和的爭端", "幻覺與不切實際的期待被現實無情擊碎", "唯有絕對的真實與坦誠能挺過這場風暴", "隱瞞已久的秘密突然曝光"], "事業": ["原有計畫突遭重大、不可抗力的變故", "組織結構面臨無預警的劇變或裁員", "危機中其實藏著讓你徹底轉型的生機", "建立在沙灘上的城堡終將倒塌"], "學業": ["成績或評量帶來一場嚴厲的震撼教育", "打破舊有僵化的知識觀念，重新洗牌", "突發狀況打亂了你原有的讀書計畫"], "財富": ["強烈防範意外的財務損失或投資崩盤", "舊有的理財觀念牆倒塌，需要全盤重建", "不要將雞蛋放在同一個危險的籃子裡"], "健康": ["特別注意突發性的意外、跌倒或急性疾病", "頭部、頸椎與骨骼的保養絕對不容忽視", "徹底釋放累積已久、即將爆發的內在壓力"], "每日": ["劇變雖然驚人，卻能徹底粉碎那些束縛著你的虛假表象", "與其修補危樓，不如徹底推倒重建", "在混亂中保持呼吸，真實將為你帶來自由"] } },
+    { id: "ar17", name: "XVII 星星", vibe: ["充滿希望的微光", "深層的心靈療癒", "純粹的寧靜美好", "宇宙的慷慨指引"], wisdom: { "愛情": ["對關係抱持純淨、無私且美好的期待", "受傷的情感得到了深度的撫慰與治癒", "遠距離的思念帶來另一種脫俗的美好", "在平靜中感受到靈魂深處的愛意"], "事業": ["靈感爆棚、創意源源不絕的黃金階段", "未來的發展前景一片大好，充滿希望", "在追求理想的過程中找到了努力的方向", "你的才華即將被大眾或業界認可"], "學業": ["藝術、創意或天文相關科目的表現卓越", "對未來的目標充滿了憧憬與學習的動力", "在平靜的心態下，知識自然地流入腦中"], "財富": ["低迷的財運終於露出令人振奮的曙光", "適合投資有未來潛力、符合理想的標的", "心靈的富足將自然帶動實質的物質豐盛"], "健康": ["身體機能進入極佳的自我修復與排毒期", "優質的睡眠與放鬆是現在最好的補藥", "大自然的能量與純淨的水對你極具療癒力"], "每日": ["保持信心，最黑暗的時刻已過，今日是充滿療癒與希望的一天", "抬頭看看星空，宇宙正在為你指引方向", "保持內心的純粹，美好的人事物將被你吸引"] } },
+    { id: "ar18", name: "XVIII 月亮", vibe: ["潛意識的迷霧", "直覺的終極考驗", "穿越內在的恐懼", "情緒的潮汐起伏"], wisdom: { "愛情": ["關係中充滿了不安、猜忌與迷茫感", "隱藏在檯面下的秘密或謊言即將浮現", "請完全信任你的夢境與深層的直覺", "不要被表面現象迷惑，去感受對方的情緒底層"], "事業": ["前路未明，充滿變數，每一步都需極度謹慎", "警惕職場中未知的隱憂、小人或潛規則", "目前極度不宜做出重大的商業決定或簽署合約", "局勢曖昧不清，需要高超的觀察力"], "學業": ["考前焦慮與對未來的不確定感加重", "讀書抓不到重點，思緒混亂如同身處迷霧", "需要克服對失敗的深層恐懼才能進步"], "財富": ["財務狀況模糊不清，難以評估真實風險", "小心詐騙陷阱、畫大餅與刻意的誤導", "保守觀望是唯一的上策，切勿盲目投資"], "健康": ["精神壓力、焦慮感與憂鬱傾向偏高", "注意女性機能、內分泌與淋巴系統的保養", "需要多接觸陽光，驅散內心的陰霾"], "每日": ["恐懼往往只是頭腦的幻覺，信任你的直覺，它會帶你走出迷霧", "不要急著尋找答案，在未知中保持覺察", "接納自己情緒的起伏，如同接納月亮的陰晴圓缺"] } },
+    { id: "ar19", name: "XIX 太陽", vibe: ["光芒四射的活力", "毫不掩飾的喜悅", "迎向成功的自信", "生命力的極致綻放"], wisdom: { "愛情": ["如陽光般炙熱、單純且坦誠的熱戀", "感情狀態明朗化，充滿無可救藥的幸福感", "非常適合公開關係、步入禮堂或共同出遊", "像孩子般純粹地去愛與被愛"], "事業": ["表現極度亮眼，成為眾人矚目的焦點", "籌備已久的計畫取得巨大且公開的成功", "充滿自信的超強執行力，貴人顯著", "你的才華與努力終於得到了應有的掌聲"], "學業": ["成績名列前茅，展現出極優異的表現", "對學習充滿無比的自信與熱忱，輕鬆過關", "社團或課外活動也能取得耀眼成績"], "財富": ["財運極佳，將有豐厚且光明正大的收穫", "投資收益顯著回升，經濟狀況大幅好轉", "這是一場充滿希望與活力的財富擴張"], "健康": ["體力與精神皆處於生命力的巔峰狀態", "注意防曬與心臟血管的保養", "非常享受戶外的陽光、運動與流汗的快感"], "每日": ["盡情發散你的光芒吧！今日是充滿生命力與喜悅的一天", "用最樂觀的心態面對一切，陰霾將自動散去", "保持孩子般的笑容，好運就會緊緊跟隨"] } },
+    { id: "ar20", name: "XX 審判", vibe: ["靈魂深處的召喚", "因果的最終結算", "徹底的覺醒與反省", "破繭重生的號角"], wisdom: { "愛情": ["到了感情關係的最終結算與審視點", "一場決定性、開誠佈公的深度談話時刻", "可能面臨破鏡重圓，或是勇敢地徹底告別", "過去的業力將在這裡得到化解"], "事業": ["長期的努力得到最終的評價與回報", "職業生涯迎來關鍵的轉折點與升遷機會", "請聽從你內心最深處、關於使命的召喚", "過去的失誤有機會得到彌補與平反"], "學業": ["學業階段的總結、大考與最終評價", "即將突破一直以來的困難門檻，恍然大悟", "重新審視自己的學習態度與目標"], "財富": ["財務決策迎來最終的實際回饋與結果", "長線投資的結算與收割期已經到來", "需要做出明智且對未來負責的資產分配決策"], "健康": ["長期的老毛病有機會找到病因並徹底根治", "身體發出的嚴厲警訊絕對不容忽視", "經歷一場大病後，心理與生理迎來全面重生"], "每日": ["聽從靈魂深處的召喚，去做一個讓你問心無愧的決定", "原諒過去的自己，因為你已經準備好重生了", "這是一個反省與覺醒的關鍵時刻"] } },
+    { id: "ar21", name: "XXI 世界", vibe: ["完美無瑕的圓滿", "大一統的整合", "新旅程的起點", "跨越邊界的視野"], wisdom: { "愛情": ["關係邁入一個完美、圓滿且穩定的階段", "靈魂達到了深刻且完美的契合與互補", "可能涉及浪漫的異國情緣或長途旅行", "修成正果，走向婚姻或更深層的承諾"], "事業": ["計畫圓滿達成所有預定的宏大目標", "跨國界、遠距或跨領域的合作取得大成功", "在你的專業領域中獲得極高、甚至國際級的肯定", "一個完美的階段性任務宣告完成"], "學業": ["順利畢業、取得學位或考取重要的證照", "知識體系已經建構完成，達到融會貫通", "出國留學或接觸海外知識將大有斬獲"], "財富": ["觸摸到財富自由的初階門檻，豐盛無虞", "具備全球化視野的宏觀理財與投資觀", "收穫極度豐碩的投資回報，享受財富帶來的自由"], "健康": ["身心靈達到前所未有的全面平衡與健康", "非常適合透過長途旅行來康復身心", "整體的健康狀態極佳，充滿宇宙的能量"], "每日": ["一個週期的圓滿結束，你已經準備好迎接更廣闊的新世界了", "慶祝你的成就吧，你值得這一切的美好", "打開視野，不要將自己侷限在小小的舒適圈中"] } }
+];
+
+let selectedTheme = "";
+
+function prepare(theme, el) {
+    selectedTheme = theme;
+    
+    document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    
+    // UI 重置
+    document.getElementById('displayArea').innerHTML = "";
+    document.getElementById('lineContactArea').style.display = "none";
+    
+    const status = document.getElementById('statusArea');
+    const drawBtn = document.getElementById('drawBtn');
+
+    if (theme === '每日') {
+        drawBtn.style.display = "none";
+        status.style.display = "block";
+        status.innerHTML = "✨ 閉上眼深呼吸，在下方感應最強烈的一組牌卡。";
+        renderDailyChoice();
+    } else {
+        status.style.display = "block";
+        status.innerHTML = `已為您連結宇宙中【${theme}】的專屬能量場`;
+        drawBtn.style.display = "block";
     }
+}
 
-    const tarotData = [
-        { name: "0 愚者", text: "目前的挑戰是一個新的開始。別害怕未知，帶著赤子之心出發吧，宇宙會守護你的勇氣。" },
-        { name: "I 魔術師", text: "你擁有所需的一切資源，現在是行動的時刻。相信自己的創造力，一切皆有可能。" },
-        { name: "II 女祭司", text: "現在適合靜觀其變。聽聽你內心的直覺，那裡已經有了答案，不需要急著向外求索。" },
-        { name: "III 皇后", text: "生命正處於豐盛的階段。無論你問的是什麼，請溫柔地對待自己，美好的果實即將成熟。" },
-        { name: "IV 皇帝", text: "需要建立秩序與紀律。穩定情緒並拿出你的領導力，現在是掌控局勢的好時機。" },
-        { name: "V 教皇", text: "尋求傳統的建議或心靈的指引。這是一段學習與成長的契機，信任更有經驗的人。" },
-        { name: "VI 戀人", text: "面臨選擇時，請跟隨心底最真實的愛。和諧的關係與溝通將會是你現在最大的力量。" },
-        { name: "VII 戰車", text: "保持意志力與專注，你將能克服目前的混亂。贏得勝利的關鍵在於自律與衝勁。" },
-        { name: "VIII 力量", text: "溫柔的力量大於剛強。用耐心與內在的慈悲去化解僵局，你會發現局面比想像中好控制。" },
-        { name: "IX 隱士", text: "暫時往內心退一步吧。這段安靜的獨處能讓你更看清方向，休息是為了邁向更高的智慧。" },
-        { name: "X 命運之輪", text: "改變即將到來，順應生命的流動。這是一個幸運的轉機，請保持開放的心態迎接新可能。" },
-        { name: "XI 正義", text: "誠實面對現狀，宇宙將給你最公平的回應。做出理性且平衡的決定，結果會如你所願。" },
-        { name: "XII 倒吊人", text: "換個角度思考，當下的停滯並非壞事。這是一場必要的修行，犧牲是為了更高的覺醒。" },
-        { name: "XIII 死神", text: "舊的結束是為了新的重生。別害怕改變，放下不再適合你的事物，天空才會放晴。" },
-        { name: "XIV 節制", text: "平衡你的情緒與生活。在溝通或行動中尋求和諧，緩慢且有節奏的調整最能帶來療癒。" },
-        { name: "XV 惡魔", text: "覺察目前的執著與慾望，你有能力打破目前的鎖鏈。認清幻象，重獲心靈的自由。" },
-        { name: "XVI 高塔", text: "突如其來的衝擊是為了震碎舊有的框架。別擔心，這是一次靈魂的大掃除，重建會更穩固。" },
-        { name: "XVII 星星", text: "希望就在前方，保持樂觀。最困難的時刻已經過去，現在是接受宇宙療癒與指引的時間。" },
-        { name: "XVIII 月亮", text: "不安與迷惘只是暫時的。請穿透恐懼去感受真實的內心，真相在直覺中會慢慢浮現。" },
-        { name: "XIX 太陽", text: "前方是一片光明！你的熱情會化解阻礙，感受純粹的快樂與成功吧，一切都清晰可見。" },
-        { name: "XX 審判", text: "聽見心靈的召喚，這是重獲新生的機會。過去的經驗已轉化為智慧，大膽地邁向新階段。" },
-        { name: "XXI 世界", text: "一個階段的圓滿完成。你已經成長了，並達到新的高度，準備好迎接下一個美好的循環。" }
+// 萬種組合引擎
+function generateWisdom(card, theme) {
+    const getRand = (arr) => arr[Math.floor(Math.random() * arr.length)];
+    const coreList = card.wisdom[theme] || ["能量深層流動中，請保持覺察"];
+    const core = getRand(coreList);
+    const vibe = getRand(card.vibe);
+    const open = getRand(universalContext.openings);
+    const conn = getRand(universalContext.connectors);
+    const close = getRand(universalContext.closings);
+
+    const templates = [
+        `${open}${conn}「${core}」。<br><br>頻率建議：試著帶入【${vibe}】的態度。<br>${close}`,
+        `關於你的${theme}，${core}。<br><br>${open}只要你願意擁抱【${vibe}】，這將會是最好的轉化。<br>${close}`,
+        `「${core}」。<br><br>${conn}一個重要課題。試著在生活中實踐【${vibe}】，${close}`
     ];
+    
+    return getRand(templates);
+}
 
-    function startDivination() {
-        const btn = document.getElementById('drawBtn');
-        const spreadArea = document.getElementById('spreadArea');
-        btn.disabled = true;
-        btn.innerText = "正在連結靈魂場域...";
+// ---- 自動傳送牌陣給 GAS 的函數 (已修復跨域阻擋) ----
+function sendToLine(theme, cardsArray) {
+    if(!GAS_WEBHOOK_URL || GAS_WEBHOOK_URL.includes('請貼上你全新的')) return;
+    
+    const payload = {
+        theme: theme,
+        cards: cardsArray.map(c => ({
+            name: c.cardName,
+            desc: c.descText.replace(/<br>/g, "\n")
+        }))
+    };
 
-        const shuffled = [...tarotData].sort(() => 0.5 - Math.random());
-        const selected = shuffled.slice(0, 4);
-        const positions = ["過去狀態", "現在處境", "未來發展", "靈魂建議"];
+    // 使用 text/plain 來繞過瀏覽器嚴格的 CORS 檢查
+    fetch(GAS_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+    })
+    .then(response => console.log("發送請求已送出"))
+    .catch(err => console.log("發送錯誤:", err));
+}
+
+function renderStandardResults() {
+    document.getElementById('drawBtn').style.display = "none";
+    const area = document.getElementById('displayArea');
+    
+    const deck = [...tarotData].sort(() => 0.5 - Math.random()).slice(0, 3);
+    const tags = ["【 內在動機 】", "【 現實投影 】", "【 轉化契機 】"];
+    
+    let html = "";
+    let parsedCardsForLine = [];
+
+    deck.forEach((card, i) => {
+        const descText = generateWisdom(card, selectedTheme);
+        parsedCardsForLine.push({ cardName: card.name, descText: descText });
         
-        let cardNamesStr = ""; 
-        let cardTextsStr = ""; 
-        
-        spreadArea.innerHTML = ""; 
+        html += `
+            <div class="card-card">
+                <span class="tag">${tags[i]}</span>
+                <div class="img-box"><img class="card-img" src="${PRIMARY_IMG + card.id + '.jpg'}"></div>
+                <div class="card-name">${card.name}</div>
+                <div class="card-desc">${descText}</div>
+            </div>
+        `;
+    });
+    
+    area.innerHTML = html;
+    sendToLine(selectedTheme, parsedCardsForLine);
+    document.getElementById('lineContactArea').style.display = "block";
+}
 
-        selected.forEach((card, index) => {
-            const posName = positions[index];
-            const cardId = tarotData.findIndex(c => c.name === card.name);
-            cardNamesStr += `${posName}: ${card.name} / `;
-            cardTextsStr += `${posName}指引: ${card.text}\n`;
+function renderDailyChoice() {
+    const area = document.getElementById('displayArea');
+    area.innerHTML = [1, 2, 3].map(i => `
+        <div class="card-card card-back daily-card" onclick="revealDaily(this)">
+            <div class="icon">✨</div>
+            <div class="card-name" style="text-align:center">第 ${i} 組</div>
+        </div>
+    `).join('');
+}
 
-            const cardDiv = document.createElement('div');
-            cardDiv.className = 'card-item';
-            cardDiv.style.animationDelay = (index * 0.2) + "s";
-            cardDiv.innerHTML = `
-                <div class="card-pos">${posName}</div>
-                <img class="card-img" src="https://www.sacred-texts.com/tarot/pkt/img/ar${String(cardId).padStart(2, '0')}.jpg">
-                <span class="card-name">${card.name}</span>
-                <div class="card-desc">${card.text}</div>
-            `;
-            spreadArea.appendChild(cardDiv);
-        });
+function revealDaily(el) {
+    document.querySelectorAll('.daily-card').forEach(c => {
+        c.onclick = null;
+        if (c !== el) c.classList.add('disabled');
+    });
+    
+    const card = tarotData[Math.floor(Math.random() * tarotData.length)];
+    const descText = generateWisdom(card, '每日');
+    
+    el.classList.remove('card-back');
+    el.innerHTML = `
+        <span class="tag">今日啟示</span>
+        <div class="img-box"><img class="card-img" src="${PRIMARY_IMG + card.id + '.jpg'}"></div>
+        <div class="card-name">${card.name}</div>
+        <div class="card-desc">${descText}</div>
+        <div class="wisdom-tip">🌿 慢活小語：${card.vibe[Math.floor(Math.random()*card.vibe.length)]}</div>
+    `;
+    
+    sendToLine("每日單張指引", [{ cardName: card.name, descText: descText }]);
+    document.getElementById('lineContactArea').style.display = "block";
+}
 
-        // 傳送到後台
-        fetch(webAppUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: JSON.stringify({ category: currentTopic, cardName: cardNamesStr, cardText: cardTextsStr })
-        });
-
-        setTimeout(() => {
-            spreadArea.style.display = 'flex';
-            document.getElementById('ctaArea').style.display = 'block';
-            btn.innerText = "占卜已完成";
-            window.scrollTo({ top: spreadArea.offsetTop - 50, behavior: 'smooth' });
-        }, 1800);
-    }
+window.onload = () => {
+    prepare('每日', document.getElementById('defaultBtn'));
+};
 </script>
 
 </body>
 </html>
-
-
