@@ -7,36 +7,39 @@
     <style>
         :root { --main-gold: #b89470; --warm-bg: #fdfaf7; --line-green: #06C755; }
         body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; background-color: var(--warm-bg); color: #554a40; margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .container { max-width: 900px; width: 100%; background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); text-align: center; }
+        .container { max-width: 900px; width: 100%; background: #fff; padding: 40px 20px; border-radius: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); text-align: center; }
         
         h1 { color: var(--main-gold); letter-spacing: 3px; font-size: 1.8rem; margin-bottom: 5px; }
         .subtitle { font-size: 0.85rem; color: #aaa; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
         
-        .intro-text { font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; color: #888; }
-        select, .draw-btn { width: 100%; max-width: 320px; padding: 12px 20px; border-radius: 30px; border: 1px solid #eee; font-size: 1rem; margin-bottom: 20px; appearance: none; background-color: #fff; }
-        .draw-btn { background: var(--main-gold); color: white; border: none; cursor: pointer; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 15px rgba(184, 148, 112, 0.3); }
-        .draw-btn:hover { background: #a38260; transform: translateY(-2px); }
-        .draw-btn:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
+        /* 新增：選單模式樣式 */
+        .topic-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin: 20px auto 30px; max-width: 600px; }
+        .topic-item { 
+            background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 15px 10px; cursor: pointer;
+            transition: all 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .topic-item:hover { background: #fffaf5; border-color: var(--main-gold); transform: translateY(-3px); }
+        .topic-item.active { border: 2px solid var(--main-gold); background: #fffaf5; box-shadow: 0 4px 12px rgba(184, 148, 112, 0.15); }
+        .topic-icon { font-size: 1.5rem; margin-bottom: 8px; }
+        .topic-label { font-size: 0.9rem; font-weight: bold; color: #666; }
+        .topic-item.active .topic-label { color: var(--main-gold); }
 
-        /* 牌陣佈局區域 */
+        .draw-btn { width: 100%; max-width: 320px; padding: 15px; border-radius: 30px; border: none; font-size: 1.1rem; margin-top: 10px; cursor: pointer; font-weight: bold; background: var(--main-gold); color: white; transition: 0.3s; box-shadow: 0 4px 15px rgba(184, 148, 112, 0.3); }
+        .draw-btn:hover { background: #a38260; transform: translateY(-2px); }
+        .draw-btn:disabled { background: #ccc; box-shadow: none; }
+
+        /* 牌陣與結果樣式維持不變 */
         .spread { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 40px; display: none; }
-        .card-item { flex: 1; min-width: 180px; max-width: 200px; background: #fffaf5; border-radius: 15px; padding: 20px; border: 1px solid #f0e6dc; transition: 0.5s; animation: fadeInUp 0.8s ease backwards; }
+        .card-item { flex: 1; min-width: 180px; max-width: 200px; background: #fffaf5; border-radius: 15px; padding: 20px; border: 1px solid #f0e6dc; animation: fadeInUp 0.8s ease backwards; }
         .card-pos { font-size: 0.85rem; color: var(--main-gold); font-weight: bold; margin-bottom: 12px; background: #fff; display: inline-block; padding: 2px 12px; border-radius: 10px; }
         .card-img { width: 100%; border-radius: 8px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); margin-bottom: 15px; border: 3px solid white; }
         .card-name { font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; display: block; color: #444; }
         .card-desc { font-size: 0.88rem; line-height: 1.6; color: #776a5e; text-align: justify; }
 
-        /* 引導區塊 */
-        .cta-area { display: none; margin-top: 50px; padding: 30px 20px; border-top: 1px solid #f0f0f0; animation: fadeIn 1s 1s backwards; }
-        .cta-text { font-size: 1rem; margin-bottom: 20px; color: #666; font-style: italic; }
-        .line-btn { display: inline-block; background: var(--line-green); color: white; text-decoration: none; padding: 14px 40px; border-radius: 50px; font-weight: bold; font-size: 1.05rem; transition: 0.3s; box-shadow: 0 4px 12px rgba(6, 199, 85, 0.2); }
-        .line-btn:hover { transform: scale(1.05); background: #05b04c; }
-        .teacher-info { font-size: 0.8rem; color: #bbb; margin-top: 15px; }
+        .cta-area { display: none; margin-top: 50px; padding: 30px 20px; border-top: 1px solid #f0f0f0; }
+        .line-btn { display: inline-block; background: var(--line-green); color: white; text-decoration: none; padding: 14px 40px; border-radius: 50px; font-weight: bold; font-size: 1.05rem; box-shadow: 0 4px 12px rgba(6, 199, 85, 0.2); }
 
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        @media (max-width: 600px) { .card-item { min-width: 140px; padding: 15px; } }
     </style>
 </head>
 <body>
@@ -45,33 +48,58 @@
     <h1>衍之塔羅</h1>
     <div class="subtitle">Personal Tarot Guidance</div>
 
+    <p style="color:#888;">請選擇一個你想指引的方向：</p>
+
     <p class="intro-text">閉上雙眼，深呼吸三次。<br>在心中默念你的問題，選好方向後開啟指引。</p>
     
-    <select id="topic">
-        <option value="愛情">❤️ 關於我的：愛情關係</option>
-        <option value="事業">💼 關於我的：事業發展</option>
-        <option value="財富">💰 關於我的：金錢財富</option>
-        <option value="健康">🌿 關於我的：身心健康</option>
-        <option value="運勢">✨ 關於我的：整體運勢</option>
-    </select>
-    <br>
+    <div class="topic-menu" id="topicMenu">
+        <div class="topic-item active" onclick="selectTopic(this, '愛情')">
+            <span class="topic-icon">❤️</span>
+            <span class="topic-label">愛情關係</span>
+        </div>
+        <div class="topic-item" onclick="selectTopic(this, '事業')">
+            <span class="topic-icon">💼</span>
+            <span class="topic-label">事業發展</span>
+        </div>
+        <div class="topic-item" onclick="selectTopic(this, '財富')">
+            <span class="topic-icon">💰</span>
+            <span class="topic-label">金錢財富</span>
+        </div>
+        <div class="topic-item" onclick="selectTopic(this, '健康')">
+            <span class="topic-icon">🌿</span>
+            <span class="topic-label">身心健康</span>
+        </div>
+        <div class="topic-item" onclick="selectTopic(this, '運勢')">
+            <span class="topic-icon">✨</span>
+            <span class="topic-label">整體運勢</span>
+        </div>
+    </div>
+
     <button id="drawBtn" class="draw-btn" onclick="startDivination()">開啟四張牌深度指引</button>
 
     <div class="spread" id="spreadArea"></div>
 
     <div class="cta-area" id="ctaArea">
-        <p class="cta-text">「牌面顯示了靈魂的現狀，但命運的鑰匙始終在你手中。想再次重新占卜請重新整理頁面」</p>
-        <p>若需要衍之老師針對此牌陣進行「一對一深度解析」：</p>
+        <p>「牌面顯示了靈魂的現狀，但命運的鑰匙始終在你手中。」</p>
+        <p>若需要衍之老師針對此牌陣進行深度解析：</p>
         <a href="https://line.me/ti/p/~yz_tarot" class="line-btn">預約 衍之 1對1 線上占卜</a>
-        <div class="teacher-info">LINE ID: yz_tarot | 衍之老師為您溫暖解惑</div>
+        <p style="font-size: 0.8rem; color: #bbb; margin-top:15px;">LINE ID: yz_tarot</p>
     </div>
 </div>
 
 <script>
-    // 【重要】請在此處替換成您的 Google Apps Script 網頁應用程式網址
+    // 【重要】請替換您的 GAS 網址
     const webAppUrl = "https://script.google.com/macros/s/AKfycbyyoU_jr34CXNFVA9olNYV7pyU0Z4EbCkhF8ZROczNqA0Of7pKfg7A7EypxQqwAXIVDaA/exec";
+    let currentTopic = "愛情"; // 預設值
 
-    // 22張大阿爾克那完整數據庫
+    function selectTopic(element, value) {
+        // 移除所有選取狀態
+        document.querySelectorAll('.topic-item').forEach(item => item.classList.remove('active'));
+        // 增加點選者的選取狀態
+        element.classList.add('active');
+        currentTopic = value;
+    }
+
     const tarotData = [
         { name: "0 愚者", text: "目前的挑戰是一個新的開始。別害怕未知，帶著赤子之心出發吧，宇宙會守護你的勇氣。" },
         { name: "I 魔術師", text: "你擁有所需的一切資源，現在是行動的時刻。相信自己的創造力，一切皆有可能。" },
@@ -98,15 +126,11 @@
     ];
 
     function startDivination() {
-        const topic = document.getElementById('topic').value;
         const btn = document.getElementById('drawBtn');
         const spreadArea = document.getElementById('spreadArea');
-        const ctaArea = document.getElementById('ctaArea');
-
         btn.disabled = true;
-        btn.innerText = "正在感應靈魂場域...";
+        btn.innerText = "正在連結靈魂場域...";
 
-        // 隨機選4張
         const shuffled = [...tarotData].sort(() => 0.5 - Math.random());
         const selected = shuffled.slice(0, 4);
         const positions = ["過去狀態", "現在處境", "未來發展", "靈魂建議"];
@@ -119,38 +143,31 @@
         selected.forEach((card, index) => {
             const posName = positions[index];
             const cardId = tarotData.findIndex(c => c.name === card.name);
-            
             cardNamesStr += `${posName}: ${card.name} / `;
             cardTextsStr += `${posName}指引: ${card.text}\n`;
 
-            // 動態生成 HTML 結構
             const cardDiv = document.createElement('div');
             cardDiv.className = 'card-item';
             cardDiv.style.animationDelay = (index * 0.2) + "s";
             cardDiv.innerHTML = `
                 <div class="card-pos">${posName}</div>
-                <img class="card-img" src="https://www.sacred-texts.com/tarot/pkt/img/ar${String(cardId).padStart(2, '0')}.jpg" alt="${card.name}">
+                <img class="card-img" src="https://www.sacred-texts.com/tarot/pkt/img/ar${String(cardId).padStart(2, '0')}.jpg">
                 <span class="card-name">${card.name}</span>
                 <div class="card-desc">${card.text}</div>
             `;
             spreadArea.appendChild(cardDiv);
         });
 
-        // 傳送資料到 GAS 後台
+        // 傳送到後台
         fetch(webAppUrl, {
             method: 'POST',
             mode: 'no-cors',
-            body: JSON.stringify({ 
-                category: topic, 
-                cardName: cardNamesStr,
-                cardText: cardTextsStr 
-            })
+            body: JSON.stringify({ category: currentTopic, cardName: cardNamesStr, cardText: cardTextsStr })
         });
 
-        // 動態顯示
         setTimeout(() => {
             spreadArea.style.display = 'flex';
-            ctaArea.style.display = 'block';
+            document.getElementById('ctaArea').style.display = 'block';
             btn.innerText = "占卜已完成";
             window.scrollTo({ top: spreadArea.offsetTop - 50, behavior: 'smooth' });
         }, 1800);
@@ -158,6 +175,4 @@
 </script>
 
 </body>
-
 </html>
-
