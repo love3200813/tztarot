@@ -71,7 +71,9 @@
         .card-back { 
             cursor: pointer; background: #fdfaf5; border: 2px dashed #e5e0d8;
             display: flex; align-items: center; justify-content: center; flex-direction: column; min-height: 420px;
+            transition: 0.3s;
         }
+        .card-back:hover { border-color: var(--gold-accent); background: #fff; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(196,164,132,0.1); }
 
         .img-box { width: 100%; aspect-ratio: 220 / 380; background: #fdfaf5; border-radius: 15px; overflow: hidden; margin-bottom: 20px; }
         .card-img { width: 100%; height: 100%; object-fit: cover; }
@@ -120,6 +122,13 @@
     <h1>衍之塔羅</h1>
     <div class="subtitle">Intuitive Soul Guidance</div>
 
+    <p style="color: #8c857d; font-size: 0.95em; line-height: 1.9; margin-bottom: 35px; letter-spacing: 1px; padding: 0 15px;">
+        親愛的，無論你此刻正經歷著什麼樣的波瀾，<br>
+        請允許自己在這裡暫時停下腳步，深呼吸。<br>
+        塔羅的指引不是為了斷定吉凶，而是陪你找回內心的平靜。<br>
+        現在請閉上眼睛3秒鐘放鬆身體，心裡默念想詢問的問題<br>
+        開始選擇你想占卜的主題吧!!
+    </p>
     <div class="menu-grid">
         <div class="theme-btn" onclick="prepare('愛情', this)"><span class="icon">❤️</span><span class="label">情感關係</span></div>
         <div class="theme-btn" onclick="prepare('事業', this)"><span class="icon">💼</span><span class="label">事業發展</span></div>
@@ -140,17 +149,24 @@
     <div id="lineContactArea" class="line-contact-box">
         <h3>✨ 需要更深層的靈魂對話嗎？</h3>
         <p>網頁的指引只是第一步的覺察。若你想針對目前的困境，進行更精準、深入的牌陣解析與客製化建議，歡迎預約專屬的 1 對 1 解牌服務。</p>
-        <a href="https://line.me/ti/p/~yz_tarot" target="_blank" class="line-btn">
+        <a href="https://line.me/ti/p/~yz_tarto" target="_blank" class="line-btn">
             💬 加 LINE 預約解牌
         </a>
     </div>
+
+    <div style="margin-top: 40px; border-top: 1px solid #f1ede4; padding-top: 20px;">
+        <p style="color: #a8a095; font-size: 0.85em; letter-spacing: 1.5px;">
+            🌿 慢慢來，一切都來得及。衍之塔羅陪你一起梳理日常。
+        </p>
+    </div>
+
 </div>
 
 <script>
 const PRIMARY_IMG = "https://www.sacred-texts.com/tarot/pkt/img/"; 
 
 // ==========================================
-// 已經綁定你最新的專屬 GAS 網址
+// 已綁定你最新的專屬 GAS 網址
 // ==========================================
 const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbz4wvEtA8tLoLHyCWjGSCuvJXWKu8eIqj_LHT13OpMUjvXrfTUHZbdZWumTQgnoSQAi/exec"; 
 
@@ -160,7 +176,7 @@ const universalContext = {
     closings: ["慢下來，讓答案自己在心中浮現。", "轉化的契機，往往就藏在這微小的覺察中。", "請絕對信任你當下的直覺，它從不說謊。", "一切都在最好的安排之中，放寬心順流而行。", "無須急躁，時間會為你帶來最完美的答案。"]
 };
 
-// 22 張牌庫 (完整語意庫)
+// 22 張牌庫 (完整語意)
 const tarotData = [
     { id: "ar00", name: "0 愚者", vibe: ["像孩子般純粹的視角", "勇敢踏入未知的勇氣", "毫無包袱的輕盈感", "不按牌理出牌的幽默"], wisdom: { "愛情": ["一段不期而遇的浪漫正悄悄萌芽", "是時候放下對這段關係的既定框架與標籤了", "雙方都需要給彼此更多自由呼吸的空間", "這是一場充滿驚喜的情感冒險"], "事業": ["大膽嘗試你從未涉足的新領域", "跳脫現有體制的僵化思維", "即使準備不夠周全，也該大膽出發了", "出乎意料的職場新機會即將降臨"], "學業": ["跨學科的學習會為你帶來靈感", "過度緊繃反而阻礙思考，放鬆心情學得更快", "保持好奇心，別被傳統解題框架困住"], "財富": ["可能會有一筆意外的小驚喜", "理財需要更靈活、不按常理出牌的思維", "別因為過度恐懼風險而錯失良機"], "健康": ["多去戶外走走，感受微風與自然", "注意神經大條導致的小擦傷或跌倒", "保持心情的愉悅就是最好的免疫力"], "每日": ["今日適合打破慣性，去嘗試一件從未做過的小事", "別太在意他人的眼光，做最真實的自己", "對未知保持開放的心胸，驚喜就在轉角"] } },
     { id: "ar01", name: "I 魔術師", vibe: ["點石成金的創造力", "掌握全局的自信", "資源靈活調度的手腕", "清晰明確的表達"], wisdom: { "愛情": ["展現你的獨特才華將深深吸引對方", "溝通與言語是化解目前僵局的靈丹妙藥", "主動創造浪漫的時刻，發球權在你手上"], "事業": ["你已具備完成目標所需的所有工具", "這正是開啟新計畫或創業的最佳時機", "發揮你的專業影響力，讓別人看見價值"], "學業": ["融會貫通是現在的學習主軸", "考試手感極佳，能靈活運用所學知識", "適合發表演說或參與辯論性質的課題"], "財富": ["運用你的專業技術或斜槓技能來獲利", "多管道的收入來源正在向你招手", "是時候把腦中的理財藍圖付諸實行了"], "健康": ["精力充沛，身體狀態處於巔峰", "非常適合開始一項新的運動或健身計畫", "注意手部關節或是呼吸道的保養"], "每日": ["你擁有所需的一切資源，今天是展現創造力的好日子", "把話說清楚，清晰的溝通能為你省下麻煩"] } },
@@ -194,7 +210,6 @@ function prepare(theme, el) {
     document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
     el.classList.add('active');
     
-    // UI 重置
     document.getElementById('displayArea').innerHTML = "";
     document.getElementById('lineContactArea').style.display = "none";
     
@@ -213,7 +228,6 @@ function prepare(theme, el) {
     }
 }
 
-// 萬種組合引擎
 function generateWisdom(card, theme) {
     const getRand = (arr) => arr[Math.floor(Math.random() * arr.length)];
     const coreList = card.wisdom[theme] || ["能量深層流動中，請保持覺察"];
@@ -232,7 +246,6 @@ function generateWisdom(card, theme) {
     return getRand(templates);
 }
 
-// ---- 自動傳送牌陣給 GAS 的函數 (已修復跨域阻擋) ----
 function sendToLine(theme, cardsArray) {
     if(!GAS_WEBHOOK_URL || GAS_WEBHOOK_URL.includes('請貼上你全新的')) return;
     
@@ -244,7 +257,6 @@ function sendToLine(theme, cardsArray) {
         }))
     };
 
-    // 使用 text/plain 來繞過瀏覽器嚴格的 CORS 檢查
     fetch(GAS_WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
@@ -285,10 +297,17 @@ function renderStandardResults() {
 
 function renderDailyChoice() {
     const area = document.getElementById('displayArea');
+    
+    // 👇 這裡已經幫你替換成「溫暖莫蘭迪金紋」的牌背圖片了 👇
+    const cardBackImg = "https://images.unsplash.com/photo-1604077350837-c7f82f28653f?w=400&q=80";
+
     area.innerHTML = [1, 2, 3].map(i => `
-        <div class="card-card card-back daily-card" onclick="revealDaily(this)">
-            <div class="icon">✨</div>
-            <div class="card-name" style="text-align:center">第 ${i} 組</div>
+        <div class="card-card card-back daily-card" onclick="revealDaily(this)" style="padding: 20px; justify-content: flex-start;">
+            <div class="img-box" style="margin-bottom: 15px;">
+                <img class="card-img" src="${cardBackImg}" style="filter: sepia(0.4) brightness(1.1); opacity: 0.9;" alt="牌背">
+            </div>
+            <div class="card-name" style="text-align:center; font-size: 1.2em; margin: 0; color: var(--gold-accent);">第 ${i} 組</div>
+            <div style="color: var(--sub-text); font-size: 0.85em; margin-top: 8px; text-align: center; letter-spacing: 2px;">點擊感應</div>
         </div>
     `).join('');
 }
@@ -322,4 +341,3 @@ window.onload = () => {
 
 </body>
 </html>
-
